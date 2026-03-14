@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
       customerId,
       originLocation: body.originLocation,
       destinationLocation: body.destinationLocation,
+      weightKg: body.weightKg,
       createdBy: user.id,
       status: user.role === "customer" ? "draft" : "booked",
       requestLabel:

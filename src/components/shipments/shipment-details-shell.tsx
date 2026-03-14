@@ -116,6 +116,12 @@ export function ShipmentDetailsShell({ shipmentId }: { shipmentId: string }) {
               <p className="mt-1 font-medium">{shipment.destination_location}</p>
             </div>
             <div className="rounded-xl bg-slate-50 p-4">
+              <p className="text-sm text-slate-500">Weight</p>
+              <p className="mt-1 font-medium">
+                {shipment.weight_kg ? `${shipment.weight_kg} kg` : "-"}
+              </p>
+            </div>
+            <div className="rounded-xl bg-slate-50 p-4">
               <p className="text-sm text-slate-500">Carrier</p>
               <p className="mt-1 font-medium">{shipment.carrier_name ?? "-"}</p>
             </div>

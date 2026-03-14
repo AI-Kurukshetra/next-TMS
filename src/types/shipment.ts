@@ -17,6 +17,7 @@ export type Shipment = {
   created_by: string | null;
   origin_location: string;
   destination_location: string;
+  weight_kg: number | null;
   status: ShipmentStatus;
   created_at: string;
   updated_at: string;
@@ -28,6 +29,7 @@ export type ShipmentSummary = {
   customer_id: string;
   origin_location: string;
   destination_location: string;
+  weight_kg: number | null;
   status: ShipmentStatus;
   customer_name: string | null;
   carrier_name: string | null;

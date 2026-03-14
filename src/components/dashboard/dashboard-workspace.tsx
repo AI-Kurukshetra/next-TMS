@@ -68,7 +68,7 @@ export function DashboardWorkspace() {
               Role-specific shipment visibility for your operational workspace.
             </p>
           </div>
-          <ShipmentsTable shipments={overview.recentShipments} />
+          <ShipmentsTable shipments={overview.recentShipments} viewerRole={user.role} />
         </div>
 
         <ResourceSection

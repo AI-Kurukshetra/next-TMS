@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import Link from "next/link";
 import { canAssignShipment } from "@/lib/auth/roles";
 import { fetchJson, withAuth } from "@/lib/api/client";
 import { DriverOption, CarrierOption, VehicleOption } from "@/types/shipment";
@@ -44,6 +45,49 @@ export function AssignShipmentForm({
 
   if (!canAssignShipment(user.role)) {
     return null;
+  }
+
+  if (!carriers.length || !vehicles.length || !drivers.length) {
+    return (
+      <section className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm">
+        <div className="mb-3">
+          <h2 className="text-lg font-semibold">Dispatch Setup Required</h2>
+          <p className="text-sm text-slate-600">
+            This shipment cannot be assigned until the required operational records
+            exist.
+          </p>
+        </div>
+        <div className="space-y-2 text-sm text-slate-700">
+          {!carriers.length ? (
+            <p>
+              No carriers found. Open{" "}
+              <Link href="/carriers" className="font-medium underline">
+                Carriers
+              </Link>{" "}
+              to add one.
+            </p>
+          ) : null}
+          {!drivers.length ? (
+            <p>
+              No drivers found. Open{" "}
+              <Link href="/drivers" className="font-medium underline">
+                Drivers
+              </Link>{" "}
+              to create one.
+            </p>
+          ) : null}
+          {!vehicles.length ? (
+            <p>
+              No vehicles found. Open{" "}
+              <Link href="/vehicles" className="font-medium underline">
+                Vehicles
+              </Link>{" "}
+              to create one.
+            </p>
+          ) : null}
+        </div>
+      </section>
+    );
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {

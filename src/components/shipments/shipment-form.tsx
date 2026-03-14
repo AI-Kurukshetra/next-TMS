@@ -29,6 +29,7 @@ export function ShipmentForm({
   const [customerId, setCustomerId] = useState(defaultCustomerId);
   const [originLocation, setOriginLocation] = useState("");
   const [destinationLocation, setDestinationLocation] = useState("");
+  const [weightKg, setWeightKg] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -63,12 +64,14 @@ export function ShipmentForm({
             customerId: user.role === "customer" ? user.customer_id : customerId,
             originLocation,
             destinationLocation,
+            weightKg: Number(weightKg),
           }),
         }),
       );
 
       setOriginLocation("");
       setDestinationLocation("");
+      setWeightKg("");
       setMessage(
         user.role === "customer"
           ? "Shipment request submitted."
@@ -157,6 +160,23 @@ export function ShipmentForm({
             required
             className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-500"
             placeholder="Mumbai Distribution Center"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="weightKg" className="mb-1 block text-sm font-medium">
+            Weight (kg)
+          </label>
+          <input
+            id="weightKg"
+            type="number"
+            min="1"
+            step="0.01"
+            value={weightKg}
+            onChange={(event) => setWeightKg(event.target.value)}
+            required
+            className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-500"
+            placeholder="1200"
           />
         </div>
 

@@ -24,6 +24,13 @@ pnpm-debug.log*
 # coverage
 coverage/
 
+# playwright
+test-results/
+demo-videos/
+playwright-report/
+playwright/.cache/
+
 # misc
 .DS_Store
 Thumbs.db
+.vercel

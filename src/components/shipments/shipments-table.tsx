@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { ShipmentSummary } from "@/types/shipment";
+import { UserRole } from "@/types/user";
 import { ShipmentStatusBadge } from "./shipment-status-badge";
 
 export function ShipmentsTable({
   shipments,
   emptyMessage = "No shipments found.",
+  viewerRole,
 }: {
   shipments: ShipmentSummary[];
   emptyMessage?: string;
+  viewerRole?: UserRole;
 }) {
   if (!shipments.length) {
     return (
@@ -30,6 +33,7 @@ export function ShipmentsTable({
             <th className="px-4 py-3">Driver</th>
             <th className="px-4 py-3">Vehicle</th>
             <th className="px-4 py-3">Status</th>
+            <th className="px-4 py-3">Action</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-200 bg-white text-sm">
@@ -56,6 +60,20 @@ export function ShipmentsTable({
               </td>
               <td className="px-4 py-3">
                 <ShipmentStatusBadge status={shipment.status} />
+              </td>
+              <td className="px-4 py-3">
+                <Link
+                  href={`/shipments/${shipment.id}`}
+                  className="inline-flex rounded-full border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-950"
+                >
+                  {viewerRole === "admin" || viewerRole === "dispatcher"
+                    ? shipment.status === "draft" || shipment.status === "booked"
+                      ? "Assign Dispatch"
+                      : "Open Shipment"
+                    : viewerRole === "driver"
+                      ? "Update Load"
+                      : "Track Shipment"}
+                </Link>
               </td>
             </tr>
           ))}

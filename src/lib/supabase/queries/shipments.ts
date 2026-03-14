@@ -26,6 +26,7 @@ type ShipmentRow = {
   created_by: string | null;
   origin_location: string;
   destination_location: string;
+  weight_kg: number | null;
   status: ShipmentStatus;
   created_at: string;
   updated_at: string;
@@ -35,6 +36,7 @@ type CreateShipmentInput = {
   customerId: string;
   originLocation: string;
   destinationLocation: string;
+  weightKg?: number | null;
   createdBy?: string;
   status?: ShipmentStatus;
   requestLabel?: string;
@@ -141,6 +143,7 @@ async function enrichShipmentSummaries(
     customer_id: row.customer_id,
     origin_location: row.origin_location,
     destination_location: row.destination_location,
+    weight_kg: row.weight_kg,
     status: row.status,
     customer_name: customersById.get(row.customer_id) ?? null,
     carrier_name: row.carrier_id ? carriersById.get(row.carrier_id) ?? null : null,
@@ -173,6 +176,7 @@ export async function listShipments(
         created_by,
         origin_location,
         destination_location,
+        weight_kg,
         status,
         created_at,
         updated_at
@@ -238,6 +242,7 @@ export async function getShipmentById(
         created_by,
         origin_location,
         destination_location,
+        weight_kg,
         status,
         created_at,
         updated_at
@@ -278,6 +283,7 @@ export async function getShipmentById(
     created_by: data.created_by,
     origin_location: data.origin_location,
     destination_location: data.destination_location,
+    weight_kg: data.weight_kg,
     status: data.status as ShipmentStatus,
     created_at: data.created_at,
     updated_at: data.updated_at,
@@ -323,6 +329,7 @@ export async function createShipmentRecord(
       created_by: input.createdBy ?? null,
       origin_location: input.originLocation,
       destination_location: input.destinationLocation,
+      weight_kg: input.weightKg ?? null,
       status: nextStatus,
     })
     .select(
@@ -337,6 +344,7 @@ export async function createShipmentRecord(
         created_by,
         origin_location,
         destination_location,
+        weight_kg,
         status,
         created_at,
         updated_at
@@ -369,6 +377,7 @@ export async function createShipmentRecord(
     created_by: data.created_by,
     origin_location: data.origin_location,
     destination_location: data.destination_location,
+    weight_kg: data.weight_kg,
     status: data.status as ShipmentStatus,
     created_at: data.created_at,
     updated_at: data.updated_at,

@@ -1,6 +1,12 @@
-import { getRequiredString } from "@/lib/validations/shared";
+import { getOptionalNumber, getRequiredString } from "@/lib/validations/shared";
 
 export function parseCreateShipmentPayload(payload: Record<string, unknown>) {
+  const weightKg = getOptionalNumber(payload.weightKg as string);
+
+  if (weightKg !== null && weightKg <= 0) {
+    throw new Error("weightKg must be greater than 0");
+  }
+
   return {
     customerId: getRequiredString(payload.customerId as string, "customerId"),
     originLocation: getRequiredString(
@@ -11,5 +17,6 @@ export function parseCreateShipmentPayload(payload: Record<string, unknown>) {
       payload.destinationLocation as string,
       "destinationLocation",
     ),
+    weightKg,
   };
 }

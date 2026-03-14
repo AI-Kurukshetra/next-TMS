@@ -95,6 +95,7 @@ export function ShipmentsWorkspace() {
         </div>
         <ShipmentsTable
           shipments={shipments}
+          viewerRole={user.role}
           emptyMessage={
             user.role === "customer"
               ? "No shipment requests found for your account."

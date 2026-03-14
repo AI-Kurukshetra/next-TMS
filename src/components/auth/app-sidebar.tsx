@@ -6,13 +6,13 @@ import { APP_NAV_ITEMS, getRoleLabel } from "@/lib/auth/roles";
 import { useCurrentAppUser } from "@/lib/auth/use-current-app-user";
 import { cn } from "@/lib/utils/cn";
 
-const AUTH_ROUTES = ["/login", "/signup"];
+const HIDDEN_ROUTES = ["/", "/login", "/signup"];
 
 export function AppSidebar() {
   const pathname = usePathname();
   const { loading, user } = useCurrentAppUser();
 
-  if (AUTH_ROUTES.includes(pathname) || loading || !user) {
+  if (HIDDEN_ROUTES.includes(pathname) || loading || !user) {
     return null;
   }
 
