@@ -17,9 +17,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-slate-100 text-slate-950">
         <div className="min-h-screen">
-          <div className="flex min-h-screen flex-col lg:flex-row">
+          <div className="flex h-screen flex-col lg:flex-row">
             <AppSidebar />
-            <main className="min-w-0 flex-1">
+            <main className="min-w-0 flex-1 h-full overflow-y-auto">
               <AppHeader />
               <div className="mx-auto max-w-[1120px] px-4 py-6 lg:px-8 lg:py-8">
                 {children}

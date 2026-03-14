@@ -19,8 +19,8 @@ export function AppSidebar() {
   const navigation = APP_NAV_ITEMS.filter((item) => item.roles.includes(user.role));
 
   return (
-    <aside className="w-full shrink-0 border-b border-slate-200 bg-white lg:h-screen lg:w-72 lg:border-b-0 lg:border-r lg:border-slate-200">
-      <div className="lg:sticky lg:top-[81px] lg:flex lg:h-screen lg:flex-col">
+    <aside className="w-full shrink-0 border-b border-slate-200 bg-white lg:h-full lg:w-72 lg:border-b-0 lg:border-r lg:border-slate-200">
+      <div className="lg:sticky lg:top-[81px] lg:flex lg:h-full lg:flex-col">
         <section className="border-b border-slate-200 px-5 py-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
             Workspace
